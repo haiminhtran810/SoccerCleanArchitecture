@@ -55,6 +55,8 @@ object Versions {
     internal const val crashAnalytics = "2.10.1"
 
     internal const val circleImageView = "3.1.0"
+
+    internal const val mobileAds = "19.2.0"
 }
 
 object Url {
@@ -234,4 +236,7 @@ object Libs {
 
     // circleImageView
     const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+
+    // Mobile Ads
+    const val mobileAds = "com.google.android.gms:play-services-ads:19.2.0"
 }

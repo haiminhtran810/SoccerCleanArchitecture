@@ -1,8 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.kotlin
-import org.gradle.kotlin.dsl.*
-
 plugins {
     id(GradlePlugins.android)
     kotlin(GradlePlugins.kotlinAndroid)
@@ -45,6 +40,11 @@ android {
         create("production") {
             matchingFallbacks = listOf("release")
         }
+    }
+
+    applicationVariants.all {
+        val ID_ADS = "ca-app-pub-3524852624424593/1147276277"
+        buildConfigField("String", "API_KEY", "\"${ID_ADS}\"")
     }
 
     compileOptions {
@@ -145,4 +145,7 @@ dependencies {
 
     // CircleImageView
     implementation(Libs.circleImageView)
+
+    // Mobile Ads
+    implementation(Libs.mobileAds)
 }
