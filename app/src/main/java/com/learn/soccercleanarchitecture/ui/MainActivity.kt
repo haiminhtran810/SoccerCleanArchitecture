@@ -1,7 +1,8 @@
-package com.learn.soccercleanarchitecture
+package com.learn.soccercleanarchitecture.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.learn.soccercleanarchitecture.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
