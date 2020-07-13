@@ -1,4 +1,3 @@
 package com.learn.domain.model
 
-open class Model {
-}
+open class Model
