@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieCleanArchitecture</string>
+    <string name="interstitialads">InterstitialAd</string>
 </resources>
