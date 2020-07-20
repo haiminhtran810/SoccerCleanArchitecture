@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovieCleanArchitecture</string>
+    <!--  Bottom navigation bar  -->
+    <string name="top">Top</string>
+    <string name="favorite">Favorite</string>
+    <string name="popular">Popular</string>
 </resources>
