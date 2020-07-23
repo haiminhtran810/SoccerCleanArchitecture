@@ -1,7 +1,5 @@
 package com.learn.soccercleanarchitecture.model
 
-import com.learn.soccercleanarchitecture.base.ModelItem
-
 data class Cast(
     val castId: Int? = 0,
     val character: String? = "",

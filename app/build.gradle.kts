@@ -1,8 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.kotlin
-import org.gradle.kotlin.dsl.*
-
 plugins {
     id(GradlePlugins.android)
     kotlin(GradlePlugins.kotlinAndroid)
@@ -62,6 +57,11 @@ android {
 
     androidExtensions {
         isExperimental = true
+    }
+
+    applicationVariants.all {
+        val urlImage = "https://image.tmdb.org/t/p/original"
+        buildConfigField("String", "URL_IMAGE", "\"$urlImage\"")
     }
 }
 
