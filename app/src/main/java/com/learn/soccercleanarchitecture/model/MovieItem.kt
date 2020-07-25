@@ -1,8 +1,8 @@
 package com.learn.soccercleanarchitecture.model
 
 import com.learn.domain.model.Movie
+import com.learn.soccercleanarchitecture.BuildConfig
 import com.learn.soccercleanarchitecture.base.ItemMapper
-import com.learn.soccercleanarchitecture.base.ModelItem
 import javax.inject.Inject
 
 data class MovieItem(
@@ -19,8 +19,8 @@ data class MovieItem(
     val voteAverage: Double? = 0.0,
     val voteCount: Int? = 0
 ) : ModelItem() {
-//    fun getImageLink() = "${BuildConfig.URL_IMAGE}$posterPath"
-//    fun getImageBackdropPathLink() = "${BuildConfig.URL_IMAGE}$backdropPath"
+    fun getImageLink() = "${BuildConfig.URL_IMAGE}$posterPath"
+    fun getImageBackdropPathLink() = "${BuildConfig.URL_IMAGE}$backdropPath"
 }
 
 class MovieItemMapper @Inject constructor() : ItemMapper<Movie, MovieItem> {
