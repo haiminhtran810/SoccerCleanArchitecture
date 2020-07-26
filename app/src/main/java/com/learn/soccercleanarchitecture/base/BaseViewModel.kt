@@ -1,5 +1,6 @@
 package com.learn.soccercleanarchitecture.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.learn.domain.usecase.UseCase
 import io.reactivex.disposables.CompositeDisposable
@@ -9,6 +10,9 @@ abstract class BaseViewModel constructor(private vararg val useCases: UseCase<*,
     ViewModel() {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
+
+    // loading flag
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
     fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
@@ -22,5 +26,13 @@ abstract class BaseViewModel constructor(private vararg val useCases: UseCase<*,
             }
         }
         super.onCleared()
+    }
+
+    fun showLoading() {
+        isLoading.value = true
+    }
+
+    fun hideLoading() {
+        isLoading.value = false
     }
 }
