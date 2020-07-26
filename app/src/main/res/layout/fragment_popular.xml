@@ -5,21 +5,33 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.learn.soccercleanarchitecture.ui.popular.PopularViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:isRefreshing="@{viewModel.isRefreshing()}">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewMovies"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_movie" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:background="@color/black">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMovies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onScrollListener="@{viewModel.onScrollListener}"
+                tools:listitem="@layout/item_movie" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

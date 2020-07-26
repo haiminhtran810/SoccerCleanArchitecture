@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
 import com.google.android.material.chip.Chip
@@ -38,11 +40,17 @@ fun ChipGroup.setChipList(list: List<String>?, childLayoutId: Int?) {
     }
 }
 
-//@BindingAdapter("isExpanding")
-//fun ExpandableTextView.isExpanding(isExpanding: Boolean?) {
-//    if (isExpanding == true) {
-//        expand()
-//    } else {
-//        collapse()
-//    }
-//}
+@BindingAdapter("onRefreshListener")
+fun SwipeRefreshLayout.customRefreshListener(listener: SwipeRefreshLayout.OnRefreshListener?) {
+    if (listener != null) setOnRefreshListener(listener)
+}
+
+@BindingAdapter("isRefreshing")
+fun SwipeRefreshLayout.customRefreshing(refreshing: Boolean?) {
+    isRefreshing = refreshing == true
+}
+
+@BindingAdapter("onScrollListener")
+fun RecyclerView.customScrollListener(listener: RecyclerView.OnScrollListener?) {
+    if (listener != null) addOnScrollListener(listener)
+}

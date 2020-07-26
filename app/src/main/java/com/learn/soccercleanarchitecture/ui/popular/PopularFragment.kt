@@ -17,14 +17,22 @@ class PopularFragment : BaseFragment<FragmentPopularBinding, PopularViewModel>()
         super.onViewCreated(view, savedInstanceState)
         movieAdapter = PopularAdapter()
         viewModel.apply {
-            getMoviePopular(1)
-            popularData.observe(viewLifecycleOwner, Observer {
+            listItem.observe(viewLifecycleOwner, Observer {
                 movieAdapter.submitList(it)
             })
+            if (listItem.value.isNullOrEmpty()) {
+                firstLoad()
+            }
         }
 
         viewDataBinding.apply {
             recyclerViewMovies.adapter = movieAdapter
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel?.apply {
+                    resetLoadMore()
+                    refreshData()
+                }
+            }
         }
     }
 }
