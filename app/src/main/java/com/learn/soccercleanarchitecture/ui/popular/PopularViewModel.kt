@@ -24,6 +24,7 @@ class PopularViewModel @Inject constructor(
                 }.subscribe({
                     onLoadSuccess(paging, it)
                 }, {
+                    onError(it)
                 })
         )
     }
