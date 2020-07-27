@@ -15,7 +15,7 @@ abstract class BaseLoadMoreRefreshViewModel<Item>() : BaseViewModel() {
         doRefresh()
     }
 
-    fun doRefresh() {
+    private fun doRefresh() {
         if (isLoading.value == true
             || isRefreshing.value == true
         ) return
