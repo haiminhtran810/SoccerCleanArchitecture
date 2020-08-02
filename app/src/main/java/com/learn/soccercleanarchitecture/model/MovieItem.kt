@@ -17,7 +17,8 @@ data class MovieItem(
     val title: String? = "",
     val video: Boolean? = false,
     val voteAverage: Double? = 0.0,
-    val voteCount: Int? = 0
+    val voteCount: Int? = 0,
+    var isFavorite: Boolean? = false
 ) : ModelItem() {
     fun getImageLink() = "${BuildConfig.URL_IMAGE}$posterPath"
     fun getImageBackdropPathLink() = "${BuildConfig.URL_IMAGE}$backdropPath"

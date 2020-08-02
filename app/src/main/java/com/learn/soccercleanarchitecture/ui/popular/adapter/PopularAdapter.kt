@@ -1,19 +1,24 @@
 package com.learn.soccercleanarchitecture.ui.popular.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.learn.soccercleanarchitecture.R
 import com.learn.soccercleanarchitecture.base.BaseRecyclerAdapter
+import com.learn.soccercleanarchitecture.binding.safeClick
 import com.learn.soccercleanarchitecture.databinding.ItemMovieBinding
 import com.learn.soccercleanarchitecture.databinding.ItemPageBinding
 import com.learn.soccercleanarchitecture.model.ModelItem
 import com.learn.soccercleanarchitecture.model.MovieItem
 import com.learn.soccercleanarchitecture.model.PageHeaderItem
 
-class PopularAdapter :
+class PopularAdapter(
+    private val onClickMovie: (MovieItem) -> Unit?,
+    private val onClickMovieFavorite: (MovieItem) -> Unit?
+) :
     BaseRecyclerAdapter<ModelItem>(callBack = object : DiffUtil.ItemCallback<ModelItem>() {
         override fun areItemsTheSame(oldItem: ModelItem, newItem: ModelItem): Boolean {
             if (oldItem is MovieItem && newItem is MovieItem) {
@@ -53,9 +58,17 @@ class PopularAdapter :
         }
     }
 
-    override fun bind(binding: ViewDataBinding, item: ModelItem) {
+    override fun bind(binding: ViewDataBinding, item: ModelItem, position: Int) {
         if (binding is ItemMovieBinding) {
-            binding.item = item as MovieItem
+            binding.apply {
+                this.item = item as MovieItem
+                imageViewFavorite.safeClick(View.OnClickListener {
+                    onClickMovieFavorite.invoke(item)
+                })
+                root.safeClick(View.OnClickListener {
+                    onClickMovie.invoke(item)
+                })
+            }
         } else if (binding is ItemPageBinding) {
             binding.page = (item as PageHeaderItem).page.toString()
         }

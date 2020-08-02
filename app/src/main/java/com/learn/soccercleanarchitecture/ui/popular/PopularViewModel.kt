@@ -1,18 +1,24 @@
 package com.learn.soccercleanarchitecture.ui.popular
 
 import com.learn.domain.usecase.movie.GetMoviePopularUseCase
+import com.learn.domain.usecase.movie.InsertMovieDbUseCase
 import com.learn.soccercleanarchitecture.base.BaseLoadMoreRefreshViewModel
 import com.learn.soccercleanarchitecture.model.ModelItem
+import com.learn.soccercleanarchitecture.model.MovieItem
 import com.learn.soccercleanarchitecture.model.MovieItemMapper
 import com.learn.soccercleanarchitecture.model.PageHeaderItem
 import com.learn.soccercleanarchitecture.util.Constants
 import com.learn.soccercleanarchitecture.util.RxUtils
+import com.learn.soccercleanarchitecture.util.SingleLiveData
 import javax.inject.Inject
 
 class PopularViewModel @Inject constructor(
     private val getMoviePopularUseCase: GetMoviePopularUseCase,
-    private val movieItemMapper: MovieItemMapper
+    private val movieItemMapper: MovieItemMapper,
+    private val insertMovieDbUseCase: InsertMovieDbUseCase
 ) : BaseLoadMoreRefreshViewModel<ModelItem>() {
+
+    val movieInsertSuccess = SingleLiveData<Unit>()
 
     private fun getMoviePopular(paging: Int) {
         addDisposable(
@@ -61,5 +67,22 @@ class PopularViewModel @Inject constructor(
 
     override fun getNumberItemPerPage(): Int {
         return Constants.DEFAULT_ITEM_PER_PAGE
+    }
+
+    fun insertMovieToDB(movieItem: MovieItem) {
+        addDisposable(
+            insertMovieDbUseCase.createObservable(
+                InsertMovieDbUseCase.Params(
+                    movieItemMapper.mapToDomain(
+                        movieItem
+                    )
+                )
+            )
+                .compose(RxUtils.applyCompletableScheduler()).subscribe({
+                    movieInsertSuccess.call()
+                }, {
+                    onError(it)
+                })
+        )
     }
 }
