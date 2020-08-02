@@ -46,7 +46,7 @@
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/imageViewMore"
+                app:layout_constraintEnd_toStartOf="@id/imageViewFavorite"
                 app:layout_constraintStart_toEndOf="@+id/imageViewMovie"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Beauty and the beast - Beauty and the beast - Beauty and the beast" />
@@ -67,7 +67,7 @@
                 tools:text="Beauty and the beast - Beauty and the beast" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewMore"
+                android:id="@+id/imageViewFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/dp_10"

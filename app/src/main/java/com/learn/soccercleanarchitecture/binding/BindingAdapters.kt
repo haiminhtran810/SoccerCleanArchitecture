@@ -2,7 +2,9 @@ package com.learn.soccercleanarchitecture.binding
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.SystemClock
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -53,4 +55,17 @@ fun SwipeRefreshLayout.customRefreshing(refreshing: Boolean?) {
 @BindingAdapter("onScrollListener")
 fun RecyclerView.customScrollListener(listener: RecyclerView.OnScrollListener?) {
     if (listener != null) addOnScrollListener(listener)
+}
+
+@BindingAdapter("safeClick")
+fun View.safeClick(listener: View.OnClickListener?) {
+    val blockInMillis: Long = 500
+    var lastClickTime: Long = 0
+    this.setOnClickListener {
+        if (SystemClock.elapsedRealtime() - lastClickTime < blockInMillis) {
+            return@setOnClickListener
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
+        listener?.onClick(this)
+    }
 }

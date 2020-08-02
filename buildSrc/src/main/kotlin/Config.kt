@@ -4,7 +4,7 @@ object Versions {
 
     internal const val androidxCore = "1.1.0"
     internal const val archCore = "2.1.0"
-    internal const val room = "2.1.0-alpha03"
+    internal const val room = "2.2.5"
     internal const val lifecycle = "2.2.0-alpha04"
     internal const val lifecycleCommonJava8 = "2.1.0"
     internal const val lifecycleSaved = "1.0.0-alpha04"
@@ -42,7 +42,7 @@ object Versions {
     internal const val navigationSafe = "2.1.0-alpha05"
 
     internal const val exo = "2.8.2"
-    internal const val coroutines = "1.3.0"
+    internal const val coroutines = "1.3.8"
 
     internal const val dagger = "2.26"
     internal const val fragmentKtx = "1.3.0-alpha01"
